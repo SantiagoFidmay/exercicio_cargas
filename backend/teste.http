@@ -1,0 +1,75 @@
+### 1. Testar cadastro de funcionario
+POST http://localhost:3000/funcionario
+Content-Type: application/json
+
+{
+    "nome": "Roberto",
+    "email": "roberto@gmail.com",
+    "senha": "abc",
+    "cpf": "12345678912",
+    "endereco": "rua abc, 5",
+    "celular": "47912345678"
+}
+
+### 5. Fazer Login do ciclista (Armazena o token automaticamente)
+# @name loginReq
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "roberto@gmail.com",
+    "senha": "abc"
+}
+
+
+### 1. Testar cadastro de motorista
+POST http://localhost:3000/motorista
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+
+{
+    "nome": "Santiago",
+    "cnh": "123",
+    "cpf": "12345678912",
+    "telefone": "47912345678"
+}
+
+### 1. Testar cadastro de motorista
+POST http://localhost:3000/motorista
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+
+{
+    "nome": "Gabriel",
+    "cnh": "456",
+    "cpf": "12345678912",
+    "telefone": "47912345678"
+}
+
+
+### 6. Consultar ciclista por ID (rota privada)
+GET http://localhost:3000/motorista/1
+Authorization: {{loginReq.response.body.token}}
+
+
+
+### 6. Consultar ciclista por ID (rota privada)
+GET http://localhost:3000/motorista/1
+Authorization: {{loginReq.response.body.token}}
+
+
+### 7. Apagar ciclista por ID (rota privada)
+
+DELETE http://localhost:3000/motorista/1
+Authorization: {{loginReq.response.body.token}}
+
+### 7. Consultar ciclista por nome (rota privada)
+GET http://localhost:3000/motorista/buscarNome/Santiago
+Authorization: {{loginReq.response.body.token}}
+
+### 7. listar ciclista por nome (rota privada)
+
+GET  http://localhost:3000/motoristas
+Authorization: {{loginReq.response.body.token}}
