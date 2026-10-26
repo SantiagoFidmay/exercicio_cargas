@@ -1,3 +1,9 @@
+const token = localStorage.getItem('token')
+
+if (!token) {
+    location.href = '../index.html'
+}
+
 const resposta = document.getElementById('resposta')
 const btn_cadMotorista = document.getElementById('btn_cadMotorista')
 
@@ -18,7 +24,10 @@ btn_cadMotorista.addEventListener('click', (e)=>{
 
     fetch(`http://localhost:3000/motorista`,{
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
         body: JSON.stringify(valores)
 
     })
